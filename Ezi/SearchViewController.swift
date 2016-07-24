@@ -134,9 +134,9 @@ class SearchViewController: UIViewController {
                 
                 dispatch_semaphore_signal(sem)
     
-
+                
                 // if null pointer exception then check if there are any spaces in the url
-                Alamofire.request(.GET, "http://api.glassdoor.com/api/api.htm?t.p=80904&t.k=kCh3z3ITn3Y&userip=0.0.0.0&useragent=&format=json&v=1&action=employers&q=\(query)").responseJSON { (response) in
+                Alamofire.request(.GET, "http://api.glassdoor.com/api/api.htm?t.p=80904&t.k=kCh3z3ITn3Y&userip=0.0.0.0&useragent=&format=json&v=1&action=employers&q=\(query)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!).responseJSON { (response) in
                     if let value = response.result.value as? [String: AnyObject] {
                         let employers = value["response"]!["employers"]!! as! NSArray
                         dispatch_semaphore_signal(sem)
@@ -149,7 +149,7 @@ class SearchViewController: UIViewController {
                             ]
                             parameters.updateValue(q, forKey: "input")
                             print("New Query")
-                            self.syncQuery(parameters, accessToken: accessToken, semaphore: sem)
+                            self.syncQuery(parameters, accessToken: accessToken, semaphore: sem, employer: employers[i] as! NSDictionary)
                         }
                     }
                 }
@@ -171,7 +171,7 @@ class SearchViewController: UIViewController {
         //dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER)
     }
     
-    func syncQuery(parameters: [String:AnyObject], accessToken: String, semaphore: dispatch_semaphore_t){
+    func syncQuery(parameters: [String:AnyObject], accessToken: String, semaphore: dispatch_semaphore_t, employer: NSDictionary){
         request(.POST, "https://www.googleapis.com/prediction/v1.6/projects/mailanalysis-1378/trainedmodels/GlassdoorContemporaryTrainingData/predict", parameters: parameters, encoding: .JSON, headers: ["Authorization":"Bearer \(accessToken)"])
             .responseJSON { (response) in
                 dispatch_semaphore_signal(semaphore)
@@ -182,8 +182,9 @@ class SearchViewController: UIViewController {
                 //completion(input: "we finished!")
                     self.arr.append(
                         [
-                        parameters,
-                        JSON as! NSDictionary
+                            parameters,
+                            employer,
+                            JSON as! NSDictionary
                         ]
                     )
                 }
