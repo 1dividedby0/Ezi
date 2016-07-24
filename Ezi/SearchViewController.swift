@@ -44,8 +44,18 @@ class SearchViewController: UIViewController {
         searchField.leftViewMode = .Always
         searchField.leftView = UIImageView(image: UIImage(named: "SearchIcon")!)
         
-        
+        self.navigationController?.navigationBarHidden = true
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(animated: Bool)
+    {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBarHidden = false
     }
     
     override func viewDidLayoutSubviews() {
@@ -91,7 +101,7 @@ class SearchViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func fullQuery(query: String, completion: (input: String) -> Void){
+    func fullQuery(location: String, query: String, completion: (input: String) -> Void){
         var parameters:[String:AnyObject] = [
             "access_token" : "ya29.Ci8oA9Bp2i8EsyDFZoZ7sOvt7JdVTKitgHFJRLtx_Qp-_rVmkXWpWOMh96tzNAyfEA",
             "input": [
@@ -134,9 +144,9 @@ class SearchViewController: UIViewController {
                 
                 dispatch_semaphore_signal(sem)
     
-                
+               
                 // if null pointer exception then check if there are any spaces in the url
-                Alamofire.request(.GET, "http://api.glassdoor.com/api/api.htm?t.p=80904&t.k=kCh3z3ITn3Y&userip=0.0.0.0&useragent=&format=json&v=1&action=employers&q=\(query)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!).responseJSON { (response) in
+                Alamofire.request(.GET, "http://api.glassdoor.com/api/api.htm?t.p=80904&t.k=kCh3z3ITn3Y&userip=0.0.0.0&useragent=&format=json&v=1&action=employers&q=\(query)&city=\(location)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!).responseJSON { (response) in
                     if let value = response.result.value as? [String: AnyObject] {
                         let employers = value["response"]!["employers"]!! as! NSArray
                         dispatch_semaphore_signal(sem)
@@ -153,6 +163,7 @@ class SearchViewController: UIViewController {
                         }
                     }
                 }
+                
             }else{
                 dispatch_semaphore_signal(sem)
                 dispatch_semaphore_signal(sem)
@@ -190,7 +201,7 @@ class SearchViewController: UIViewController {
                 }
                 
         }
-        NSThread.sleepForTimeInterval(1)
+        NSThread.sleepForTimeInterval(0.4)
     }
     
     // Creates the auth controller for authorizing access to Gmail API
@@ -249,7 +260,7 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func search(sender: AnyObject) {
-        fullQuery(searchField.text!) { (input) in
+        fullQuery(locationTextField.text!, query: searchField.text!) { (input) in
             
         }
         performSegueWithIdentifier("toList", sender: self)
@@ -261,6 +272,7 @@ class SearchViewController: UIViewController {
      override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
      // Get the new view controller using segue.destinationViewController.
      // Pass the selected object to the new view controller.
+        //let nav = segue.destinationViewController as! UINavigationController
         let vc = segue.destinationViewController as! CompaniesViewController
         vc.data = arr
         

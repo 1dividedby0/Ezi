@@ -11,9 +11,17 @@ import UIKit
 class CompaniesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var data: [NSArray]!
     
+    @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
-        print(data)
+        
+        self.navigationController?.navigationBar
+        
+        var barButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back Button"), style: .Plain, target: self, action: #selector(self.goBack))
+        self.navigationItem.leftBarButtonItem = barButtonItem
+        //navigationController?.navigationBar.barTintColor = UIColor.purpleColor()
+        navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        
         tableView.dataSource = self
         tableView.delegate = self
         for j in data{
@@ -30,8 +38,14 @@ class CompaniesViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         tableView.reloadData()
     }
+    
+    func goBack(){
+        self.navigationController!.popViewControllerAnimated(true)
+    }
+    
     override func viewDidAppear(animated: Bool) {
         
+        //self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -49,11 +63,12 @@ class CompaniesViewController: UIViewController, UITableViewDelegate, UITableVie
         let squareLogo = employer["squareLogo"] as! String
         let companyName = employer["name"] as! String
         
-        cell.percentLabel.text = score
+        
         cell.nameLabel.text = companyName
         cell.companyLogoView.setImageWithURL(NSURL(string: squareLogo)!)
         
         if Int(score) != nil{
+            cell.percentLabel.text = "\(Int(score)! * 10)%"
             let val = Int(score)!
             
             switch(val){
