@@ -7,6 +7,7 @@ target 'Ezi' do
     pod 'Alamofire', '~> 3.4'
     pod 'GTMOAuth2', '~> 1.1.0'
     pod 'GoogleAPIClient/Gmail', '~> 1.0.2'
+    pod 'AFNetworking', '~> 3.0'
   # Pods for Ezi
 
 end

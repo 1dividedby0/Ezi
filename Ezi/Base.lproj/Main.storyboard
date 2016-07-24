@@ -77,6 +77,7 @@
                         <outlet property="locationTextField" destination="8q8-ST-dgF" id="WZm-3i-agy"/>
                         <outlet property="searchButton" destination="kqg-bt-XSy" id="mba-Sb-hpV"/>
                         <outlet property="searchField" destination="YKo-xA-J1J" id="NWu-YV-KJh"/>
+                        <segue destination="KiI-SI-k2u" kind="show" identifier="toList" id="1BO-HW-L6L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -135,6 +136,11 @@
                                                 <constraint firstItem="pM0-QH-uQA" firstAttribute="leading" secondItem="qai-dU-fbG" secondAttribute="trailing" constant="17" id="t3R-0d-Rhy"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="companyLogoView" destination="qai-dU-fbG" id="kXL-nY-bj9"/>
+                                            <outlet property="locationLabel" destination="UXT-1e-8aP" id="o0R-or-mG3"/>
+                                            <outlet property="nameLabel" destination="pM0-QH-uQA" id="9UZ-F5-746"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -142,6 +148,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="feH-f6-CYz"/>
+                    <connections>
+                        <outlet property="tableView" destination="2dO-OJ-p41" id="ND2-yt-Fbb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0gU-ey-9iV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -170,4 +179,7 @@
         <image name="Ezi" width="138" height="62"/>
         <image name="Home Page background" width="375" height="667"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="1BO-HW-L6L"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -10,12 +10,15 @@ import UIKit
 import GoogleAPIClient
 import GTMOAuth2
 import Alamofire
+import AFNetworking
 
 class SearchViewController: UIViewController {
     private let kKeychainItemName = "Gmail API"
     private let kClientID = "669494109637-lhu34loitr7lcltu444qhhsdvj2p4qr6.apps.googleusercontent.com"
     
     private let service = GTLServiceGmail()
+    
+    var arr:[NSArray] = []
     
     private let scopes = ["https://www.googleapis.com/auth/cloud-platform", "https://www.googleapis.com/auth/prediction"]
     
@@ -88,7 +91,7 @@ class SearchViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func fullQuery( completion: (input: String) -> Void){
+    func fullQuery(query: String, completion: (input: String) -> Void){
         var parameters:[String:AnyObject] = [
             "access_token" : "ya29.Ci8oA9Bp2i8EsyDFZoZ7sOvt7JdVTKitgHFJRLtx_Qp-_rVmkXWpWOMh96tzNAyfEA",
             "input": [
@@ -130,8 +133,10 @@ class SearchViewController: UIViewController {
                 print(self.service.authorizer.canAuthorize)
                 
                 dispatch_semaphore_signal(sem)
+    
+
                 // if null pointer exception then check if there are any spaces in the url
-                Alamofire.request(.GET, "http://api.glassdoor.com/api/api.htm?t.p=80904&t.k=kCh3z3ITn3Y&userip=0.0.0.0&useragent=&format=json&v=1&action=employers").responseJSON { (response) in
+                Alamofire.request(.GET, "http://api.glassdoor.com/api/api.htm?t.p=80904&t.k=kCh3z3ITn3Y&userip=0.0.0.0&useragent=&format=json&v=1&action=employers&q=\(query)").responseJSON { (response) in
                     if let value = response.result.value as? [String: AnyObject] {
                         let employers = value["response"]!["employers"]!! as! NSArray
                         dispatch_semaphore_signal(sem)
@@ -153,7 +158,7 @@ class SearchViewController: UIViewController {
                 dispatch_semaphore_signal(sem)
             }
         }
-        
+        //NSThread.sleepForTimeInterval(15)
         while dispatch_semaphore_wait(sem, DISPATCH_TIME_NOW) != 0{
             NSRunLoop.currentRunLoop().runMode(NSDefaultRunLoopMode, beforeDate: NSDate(timeIntervalSinceNow: 10))
         }
@@ -163,20 +168,28 @@ class SearchViewController: UIViewController {
         while dispatch_semaphore_wait(sem, DISPATCH_TIME_NOW) != 0{
             NSRunLoop.currentRunLoop().runMode(NSDefaultRunLoopMode, beforeDate: NSDate(timeIntervalSinceNow: 10))
         }
-        
+        //dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER)
     }
     
     func syncQuery(parameters: [String:AnyObject], accessToken: String, semaphore: dispatch_semaphore_t){
         request(.POST, "https://www.googleapis.com/prediction/v1.6/projects/mailanalysis-1378/trainedmodels/GlassdoorContemporaryTrainingData/predict", parameters: parameters, encoding: .JSON, headers: ["Authorization":"Bearer \(accessToken)"])
             .responseJSON { (response) in
                 dispatch_semaphore_signal(semaphore)
-                //if let JSON = response.result.value {
+                if let JSON = response.result.value {
                 print("JSON: \(response)")
                 print(parameters)
                 //print("refresh token = " + auth.accessToken)
                 //completion(input: "we finished!")
-                //}
+                    self.arr.append(
+                        [
+                        parameters,
+                        JSON as! NSDictionary
+                        ]
+                    )
+                }
+                
         }
+        NSThread.sleepForTimeInterval(1)
     }
     
     // Creates the auth controller for authorizing access to Gmail API
@@ -235,18 +248,22 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func search(sender: AnyObject) {
-        fullQuery { (input) in
-            print("")
+        fullQuery(searchField.text!) { (input) in
+            
         }
+        performSegueWithIdentifier("toList", sender: self)
     }
-    /*
+    
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
      // Get the new view controller using segue.destinationViewController.
      // Pass the selected object to the new view controller.
+        let vc = segue.destinationViewController as! CompaniesViewController
+        vc.data = arr
+        
      }
-     */
+     
     
 }

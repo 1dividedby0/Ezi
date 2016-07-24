@@ -6,8 +6,11 @@
 //  Copyright © 2016 dhruv.mangtani. All rights reserved.
 //
 
-import Cocoa
+import UIKit
 
 class CompanyCell: UITableViewCell {
+    @IBOutlet weak var companyLogoView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
 
 }
