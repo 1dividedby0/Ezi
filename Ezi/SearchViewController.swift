@@ -19,23 +19,63 @@ class SearchViewController: UIViewController {
     
     private let scopes = ["https://www.googleapis.com/auth/cloud-platform", "https://www.googleapis.com/auth/prediction"]
     
+    @IBOutlet weak var searchField: UITextField!
+    @IBOutlet weak var locationTextField: UITextField!
+    @IBOutlet weak var searchButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        searchButton.layer.cornerRadius = 7
+        searchButton.layer.borderWidth = 1
+        searchButton.layer.borderColor = UIColor.clearColor().CGColor
         
+        locationTextField.borderStyle = UITextBorderStyle.None
+        locationTextField.backgroundColor = UIColor.clearColor()
+        locationTextField.textColor = UIColor.whiteColor()
+        locationTextField.leftViewMode = .Always
+        locationTextField.leftView = UIImageView(image: UIImage(named: "locationiconvector")!)
         
-        //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackgroundHomeScreen")!)
+        searchField.borderStyle = UITextBorderStyle.None
+        searchField.backgroundColor = UIColor.clearColor()
+        searchField.textColor = UIColor.whiteColor()
+        searchField.leftViewMode = .Always
+        searchField.leftView = UIImageView(image: UIImage(named: "SearchIcon")!)
         
         
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidLayoutSubviews() {
+        
+        let border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = UIColor.whiteColor().CGColor
+        border.frame = CGRect(x: 0, y: locationTextField.frame.size.height - width, width:  locationTextField.frame.size.width, height: locationTextField.frame.size.height)
+        
+        border.borderWidth = width
+        locationTextField.layer.addSublayer(border)
+        locationTextField.layer.masksToBounds = true
+        
+        locationTextField.attributedPlaceholder = NSAttributedString(string:"Location",
+                                                                     attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
+        let border2 = CALayer()
+        let width2 = CGFloat(2.0)
+        border2.borderColor = UIColor.whiteColor().CGColor
+        border2.frame = CGRect(x: 0, y: searchField.frame.size.height - width2, width:  searchField.frame.size.width, height: searchField.frame.size.height)
+        
+        border2.borderWidth = width2
+        searchField.layer.addSublayer(border2)
+        searchField.layer.masksToBounds = true
+        
+        searchField.attributedPlaceholder = NSAttributedString(string:"Job Title",
+                                                               attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
+    }
+    
     override func viewDidAppear(animated: Bool) {
-        if NSUserDefaults.standardUserDefaults().valueForKey("RT") != nil {
-            
-            fullQuery { (input) in
-                print("")
-            }
-        } else {
+        let value = UIInterfaceOrientation.Portrait.rawValue
+        UIDevice.currentDevice().setValue(value, forKey: "orientation")
+        
+        if NSUserDefaults.standardUserDefaults().valueForKey("RT") == nil {
             presentViewController(
                 createAuthController(),
                 animated: true,
@@ -88,10 +128,9 @@ class SearchViewController: UIViewController {
                 clientSecret: nil) {
                 self.service.authorizer = auth
                 print(self.service.authorizer.canAuthorize)
-                //Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders?.updateValue("application/json", forKey: "Content-Type")
                 
                 dispatch_semaphore_signal(sem)
-                
+                // if null pointer exception then check if there are any spaces in the url
                 Alamofire.request(.GET, "http://api.glassdoor.com/api/api.htm?t.p=80904&t.k=kCh3z3ITn3Y&userip=0.0.0.0&useragent=&format=json&v=1&action=employers").responseJSON { (response) in
                     if let value = response.result.value as? [String: AnyObject] {
                         let employers = value["response"]!["employers"]!! as! NSArray
@@ -128,11 +167,12 @@ class SearchViewController: UIViewController {
     }
     
     func syncQuery(parameters: [String:AnyObject], accessToken: String, semaphore: dispatch_semaphore_t){
-        request(.POST, "https://www.googleapis.com/prediction/v1.6/projects/mailanalysis-1378/trainedmodels/SentimentAnalysisDataset/predict", parameters: parameters, encoding: .JSON, headers: ["Authorization":"Bearer \(accessToken)"])
+        request(.POST, "https://www.googleapis.com/prediction/v1.6/projects/mailanalysis-1378/trainedmodels/GlassdoorContemporaryTrainingData/predict", parameters: parameters, encoding: .JSON, headers: ["Authorization":"Bearer \(accessToken)"])
             .responseJSON { (response) in
                 dispatch_semaphore_signal(semaphore)
                 //if let JSON = response.result.value {
                 print("JSON: \(response)")
+                print(parameters)
                 //print("refresh token = " + auth.accessToken)
                 //completion(input: "we finished!")
                 //}
@@ -176,9 +216,6 @@ class SearchViewController: UIViewController {
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject(authResult.refreshToken, forKey: "RT")
         dismissViewControllerAnimated(true, completion: nil)
-        fullQuery { (input) in
-            
-        }
     }
     
     // Helper for showing an alert
@@ -197,6 +234,11 @@ class SearchViewController: UIViewController {
         presentViewController(alert, animated: true, completion: nil)
     }
     
+    @IBAction func search(sender: AnyObject) {
+        fullQuery { (input) in
+            print("")
+        }
+    }
     /*
      // MARK: - Navigation
      
