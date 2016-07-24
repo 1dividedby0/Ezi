@@ -58,6 +58,11 @@ class SearchViewController: UIViewController {
         self.navigationController?.navigationBarHidden = false
     }
     
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view!.endEditing(true)
+    }
+    
     override func viewDidLayoutSubviews() {
         
         let border = CALayer()
