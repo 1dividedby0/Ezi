@@ -22,6 +22,9 @@ class CompaniesViewController: UIViewController, UITableViewDelegate, UITableVie
         //navigationController?.navigationBar.barTintColor = UIColor.purpleColor()
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         
+        searchTextField.layer.cornerRadius =  5
+        searchTextField.clipsToBounds = true
+        
         tableView.dataSource = self
         tableView.delegate = self
         for j in data{
@@ -91,6 +94,9 @@ class CompaniesViewController: UIViewController, UITableViewDelegate, UITableVie
                 //cell.pigView.image = UIImage(named: "")
                 print()
             }
+        }else{
+            data.removeAtIndex(indexPath.row)
+            tableView.reloadData()
         }
         //print(dict)
         //print("NEXT")
