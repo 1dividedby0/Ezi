@@ -1,0 +1,29 @@
+PODS:
+  - Alamofire (3.4.0)
+  - GoogleAPIClient/Core (1.0.4):
+    - GTMSessionFetcher (~> 1.1)
+  - GoogleAPIClient/Gmail (1.0.4):
+    - GoogleAPIClient/Core
+    - GTMSessionFetcher (~> 1.1)
+  - GTMOAuth2 (1.1.1):
+    - GTMSessionFetcher (~> 1.1)
+  - GTMSessionFetcher (1.1.4):
+    - GTMSessionFetcher/Full (= 1.1.4)
+  - GTMSessionFetcher/Core (1.1.4)
+  - GTMSessionFetcher/Full (1.1.4):
+    - GTMSessionFetcher/Core (= 1.1.4)
+
+DEPENDENCIES:
+  - Alamofire (~> 3.4)
+  - GoogleAPIClient/Gmail (~> 1.0.2)
+  - GTMOAuth2 (~> 1.1.0)
+
+SPEC CHECKSUMS:
+  Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
+  GoogleAPIClient: 4dedb6af613eb7d171814c343f8a82ee5411e13b
+  GTMOAuth2: bdb12f3e0d2110bfe585f6151230b883beb4d042
+  GTMSessionFetcher: 174bc61d5238f81f9ddb807b0b0170420f67de85
+
+PODFILE CHECKSUM: 292ac31b602b1e34f97af7406ba0194d018f6ef5
+
+COCOAPODS: 1.0.0

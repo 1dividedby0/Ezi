@@ -1,0 +1,390 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7E0EE372288D2B04B8F0E89B /* Pods_Ezi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F7FD3D40C8D0EF7AD8FC70 /* Pods_Ezi.framework */; };
+		E401C78D1D4442C50091F9B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E401C78C1D4442C50091F9B0 /* AppDelegate.swift */; };
+		E401C7921D4442C50091F9B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E401C7901D4442C50091F9B0 /* Main.storyboard */; };
+		E401C7951D4442C50091F9B0 /* Ezi.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E401C7931D4442C50091F9B0 /* Ezi.xcdatamodeld */; };
+		E401C7971D4442C50091F9B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E401C7961D4442C50091F9B0 /* Assets.xcassets */; };
+		E401C79A1D4442C50091F9B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E401C7981D4442C50091F9B0 /* LaunchScreen.storyboard */; };
+		E401C7A21D4442E90091F9B0 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E401C7A11D4442E90091F9B0 /* SearchViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		130A04D3CFC7208D3D51F596 /* Pods-Ezi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ezi.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ezi/Pods-Ezi.release.xcconfig"; sourceTree = "<group>"; };
+		18F7FD3D40C8D0EF7AD8FC70 /* Pods_Ezi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ezi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D2A1EF23F476E757A77BE9E /* Pods-Ezi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ezi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ezi/Pods-Ezi.debug.xcconfig"; sourceTree = "<group>"; };
+		E401C7891D4442C50091F9B0 /* Ezi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ezi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E401C78C1D4442C50091F9B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E401C7911D4442C50091F9B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E401C7941D4442C50091F9B0 /* Ezi.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Ezi.xcdatamodel; sourceTree = "<group>"; };
+		E401C7961D4442C50091F9B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E401C7991D4442C50091F9B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E401C79B1D4442C50091F9B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E401C7A11D4442E90091F9B0 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E401C7861D4442C50091F9B0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E0EE372288D2B04B8F0E89B /* Pods_Ezi.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		02F31553C34A300197D564CA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				18F7FD3D40C8D0EF7AD8FC70 /* Pods_Ezi.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		976A913380970A1030DC5662 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5D2A1EF23F476E757A77BE9E /* Pods-Ezi.debug.xcconfig */,
+				130A04D3CFC7208D3D51F596 /* Pods-Ezi.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E401C7801D4442C50091F9B0 = {
+			isa = PBXGroup;
+			children = (
+				E401C78B1D4442C50091F9B0 /* Ezi */,
+				E401C78A1D4442C50091F9B0 /* Products */,
+				976A913380970A1030DC5662 /* Pods */,
+				02F31553C34A300197D564CA /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		E401C78A1D4442C50091F9B0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E401C7891D4442C50091F9B0 /* Ezi.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E401C78B1D4442C50091F9B0 /* Ezi */ = {
+			isa = PBXGroup;
+			children = (
+				E401C78C1D4442C50091F9B0 /* AppDelegate.swift */,
+				E401C7901D4442C50091F9B0 /* Main.storyboard */,
+				E401C7A11D4442E90091F9B0 /* SearchViewController.swift */,
+				E401C7961D4442C50091F9B0 /* Assets.xcassets */,
+				E401C7981D4442C50091F9B0 /* LaunchScreen.storyboard */,
+				E401C79B1D4442C50091F9B0 /* Info.plist */,
+				E401C7931D4442C50091F9B0 /* Ezi.xcdatamodeld */,
+			);
+			path = Ezi;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E401C7881D4442C50091F9B0 /* Ezi */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E401C79E1D4442C50091F9B0 /* Build configuration list for PBXNativeTarget "Ezi" */;
+			buildPhases = (
+				EFD3F066EFA934643F5B8EE6 /* 📦 Check Pods Manifest.lock */,
+				E401C7851D4442C50091F9B0 /* Sources */,
+				E401C7861D4442C50091F9B0 /* Frameworks */,
+				E401C7871D4442C50091F9B0 /* Resources */,
+				45A5D81D5187F056CFF79C7E /* 📦 Embed Pods Frameworks */,
+				5977DA594E11BA6A37E321EA /* 📦 Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Ezi;
+			productName = Ezi;
+			productReference = E401C7891D4442C50091F9B0 /* Ezi.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E401C7811D4442C50091F9B0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = dhruv.mangtani;
+				TargetAttributes = {
+					E401C7881D4442C50091F9B0 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = E401C7841D4442C50091F9B0 /* Build configuration list for PBXProject "Ezi" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E401C7801D4442C50091F9B0;
+			productRefGroup = E401C78A1D4442C50091F9B0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E401C7881D4442C50091F9B0 /* Ezi */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E401C7871D4442C50091F9B0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E401C79A1D4442C50091F9B0 /* LaunchScreen.storyboard in Resources */,
+				E401C7971D4442C50091F9B0 /* Assets.xcassets in Resources */,
+				E401C7921D4442C50091F9B0 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		45A5D81D5187F056CFF79C7E /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ezi/Pods-Ezi-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5977DA594E11BA6A37E321EA /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ezi/Pods-Ezi-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EFD3F066EFA934643F5B8EE6 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E401C7851D4442C50091F9B0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E401C7A21D4442E90091F9B0 /* SearchViewController.swift in Sources */,
+				E401C7951D4442C50091F9B0 /* Ezi.xcdatamodeld in Sources */,
+				E401C78D1D4442C50091F9B0 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E401C7901D4442C50091F9B0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E401C7911D4442C50091F9B0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E401C7981D4442C50091F9B0 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E401C7991D4442C50091F9B0 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E401C79C1D4442C50091F9B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E401C79D1D4442C50091F9B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E401C79F1D4442C50091F9B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D2A1EF23F476E757A77BE9E /* Pods-Ezi.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Ezi/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dhruv.Ezi;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E401C7A01D4442C50091F9B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 130A04D3CFC7208D3D51F596 /* Pods-Ezi.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Ezi/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dhruv.Ezi;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E401C7841D4442C50091F9B0 /* Build configuration list for PBXProject "Ezi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E401C79C1D4442C50091F9B0 /* Debug */,
+				E401C79D1D4442C50091F9B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E401C79E1D4442C50091F9B0 /* Build configuration list for PBXNativeTarget "Ezi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E401C79F1D4442C50091F9B0 /* Debug */,
+				E401C7A01D4442C50091F9B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E401C7931D4442C50091F9B0 /* Ezi.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E401C7941D4442C50091F9B0 /* Ezi.xcdatamodel */,
+			);
+			currentVersion = E401C7941D4442C50091F9B0 /* Ezi.xcdatamodel */;
+			path = Ezi.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = E401C7811D4442C50091F9B0 /* Project object */;
+}
