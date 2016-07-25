@@ -106,108 +106,7 @@ class SearchViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func fullQuery(location: String, query: String, completion: (input: String) -> Void){
-        var parameters:[String:AnyObject] = [
-            "access_token" : "ya29.Ci8oA9Bp2i8EsyDFZoZ7sOvt7JdVTKitgHFJRLtx_Qp-_rVmkXWpWOMh96tzNAyfEA",
-            "input": [
-                "csvInstance": [
-                    "Sont des mots"
-                ]
-            ],
-            "Content-Type": "application/JSON"
-        ]
-        
-        let url = "https://www.googleapis.com/oauth2/v4/token"
-        
-        let refresh_token = NSUserDefaults.standardUserDefaults().objectForKey("RT") as! String
-        
-        print(refresh_token)
-        let atparams = [
-            "client_id": kClientID,
-            "refresh_token": refresh_token,
-            "grant_type": "refresh_token"
-        ]
-        let headers = [:]
-        
-        let sem = dispatch_semaphore_create(0)
-        Alamofire.request(.POST, url, parameters: atparams, encoding: .URL, headers: headers as! [String : String]).responseJSON { (response) in
-            var accessToken = ""
-            if let validResponse = response.result.value as? [String : AnyObject] {
-                if let access_token = validResponse["access_token"]{
-                    parameters["access_token"] = access_token as! String
-                    print(access_token)
-                    accessToken = access_token as! String
-                }
-            }
-            
-            if let auth = GTMOAuth2ViewControllerTouch.authForGoogleFromKeychainForName(
-                self.kKeychainItemName,
-                clientID: self.kClientID,
-                clientSecret: nil) {
-                self.service.authorizer = auth
-                print(self.service.authorizer.canAuthorize)
-                
-                dispatch_semaphore_signal(sem)
     
-               
-                // if null pointer exception then check if there are any spaces in the url
-                Alamofire.request(.GET, "http://api.glassdoor.com/api/api.htm?t.p=80904&t.k=kCh3z3ITn3Y&userip=0.0.0.0&useragent=&format=json&v=1&action=employers&q=\(query)&city=\(location)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!).responseJSON { (response) in
-                    if let value = response.result.value as? [String: AnyObject] {
-                        let employers = value["response"]!["employers"]!! as! NSArray
-                        dispatch_semaphore_signal(sem)
-                        //print(employers.count)
-                        for i in 0 ..< employers.count {
-                            let q = [
-                                "csvInstance": [
-                                    "\(employers[i]["featuredReview"]!!["pros"]!!)"
-                                ]
-                            ]
-                            parameters.updateValue(q, forKey: "input")
-                            print("New Query")
-                            self.syncQuery(parameters, accessToken: accessToken, semaphore: sem, employer: employers[i] as! NSDictionary)
-                        }
-                    }
-                }
-                
-            }else{
-                dispatch_semaphore_signal(sem)
-                dispatch_semaphore_signal(sem)
-            }
-        }
-        //NSThread.sleepForTimeInterval(15)
-        while dispatch_semaphore_wait(sem, DISPATCH_TIME_NOW) != 0{
-            NSRunLoop.currentRunLoop().runMode(NSDefaultRunLoopMode, beforeDate: NSDate(timeIntervalSinceNow: 10))
-        }
-        while dispatch_semaphore_wait(sem, DISPATCH_TIME_NOW) != 0{
-            NSRunLoop.currentRunLoop().runMode(NSDefaultRunLoopMode, beforeDate: NSDate(timeIntervalSinceNow: 10))
-        }
-        while dispatch_semaphore_wait(sem, DISPATCH_TIME_NOW) != 0{
-            NSRunLoop.currentRunLoop().runMode(NSDefaultRunLoopMode, beforeDate: NSDate(timeIntervalSinceNow: 10))
-        }
-        //dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER)
-    }
-    
-    func syncQuery(parameters: [String:AnyObject], accessToken: String, semaphore: dispatch_semaphore_t, employer: NSDictionary){
-        request(.POST, "https://www.googleapis.com/prediction/v1.6/projects/mailanalysis-1378/trainedmodels/GlassdoorContemporaryTrainingData/predict", parameters: parameters, encoding: .JSON, headers: ["Authorization":"Bearer \(accessToken)"])
-            .responseJSON { (response) in
-                dispatch_semaphore_signal(semaphore)
-                if let JSON = response.result.value {
-                print("JSON: \(response)")
-                print(parameters)
-                //print("refresh token = " + auth.accessToken)
-                //completion(input: "we finished!")
-                    self.arr.append(
-                        [
-                            parameters,
-                            employer,
-                            JSON as! NSDictionary
-                        ]
-                    )
-                }
-                
-        }
-        NSThread.sleepForTimeInterval(0.4)
-    }
     
     // Creates the auth controller for authorizing access to Gmail API
     private func createAuthController() -> GTMOAuth2ViewControllerTouch {
@@ -265,9 +164,7 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func search(sender: AnyObject) {
-        fullQuery(locationTextField.text!, query: searchField.text!) { (input) in
-            
-        }
+        
         performSegueWithIdentifier("toList", sender: self)
     }
     
@@ -279,8 +176,9 @@ class SearchViewController: UIViewController {
      // Pass the selected object to the new view controller.
         //let nav = segue.destinationViewController as! UINavigationController
         let vc = segue.destinationViewController as! CompaniesViewController
-        vc.data = arr
-        
+        //vc.data = arr
+        vc.query = searchField.text!
+        vc.location = locationTextField.text!
      }
      
     
